@@ -9,8 +9,8 @@ enum OptionPosition {
 
 /// An extension on the OptionPosition enum to add additional functionality for parsing
 extension OptionPositionExtension on OptionPosition {
-  static const String longName = 'long';
-  static const String shortName = 'short';
+  static const String longName = 'Long';
+  static const String shortName = 'Short';
 
   static fromString(String name) {
     return switch (name) {
