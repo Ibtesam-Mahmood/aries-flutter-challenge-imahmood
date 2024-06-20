@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_challenge/components/contract_grid/add_more_button.dart';
-import 'package:flutter_challenge/components/contract_grid/no_contract_tile.dart';
 import 'package:flutter_challenge/components/contract_grid/option_contract_tile.dart';
 import 'package:flutter_challenge/util/constants.dart';
 import 'package:flutter_challenge/util/state/contracts_bloc.dart';

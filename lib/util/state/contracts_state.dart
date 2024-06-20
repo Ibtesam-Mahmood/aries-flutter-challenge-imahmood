@@ -26,12 +26,12 @@ class ContractsState extends Equatable {
 
   /// Everytime this method is used to update the contracts, the constraints and spots are recomputed
   ContractsState copyWith({List<OptionsContract>? contracts}) {
-    final constraints = contracts == null
-        ? null
-        : ContractsStateHelpers.computeConstraints(contracts);
-    final spots = contracts == null
-        ? null
-        : ContractsStateHelpers.computeSpots(contracts, constraints!);
+    final constraints = contracts?.isNotEmpty == true
+        ? ContractsStateHelpers.computeConstraints(contracts!)
+        : null;
+    final spots = contracts?.isNotEmpty == true
+        ? ContractsStateHelpers.computeSpots(contracts!, constraints!)
+        : null;
 
     return ContractsState(
       contracts: contracts ?? this.contracts,

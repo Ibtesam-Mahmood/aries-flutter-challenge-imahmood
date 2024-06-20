@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // The seed data for the options contracts
-  static const optionsSeedData = [
+  static const List<Map<String, dynamic>> optionsSeedData = [
     {
       "strike_price": 100,
       "type": "Call",
@@ -22,14 +22,14 @@ class MyApp extends StatelessWidget {
       "long_short": "Long",
       "expiration_date": "2025-12-17T00:00:00Z"
     },
-    {
-      "strike_price": 102.50,
-      "type": "Call",
-      "bid": 12.10,
-      "ask": 14,
-      "long_short": "Long",
-      "expiration_date": "2025-12-17T00:00:00Z"
-    },
+    // {
+    //   "strike_price": 102.50,
+    //   "type": "Call",
+    //   "bid": 12.10,
+    //   "ask": 14,
+    //   "long_short": "Long",
+    //   "expiration_date": "2025-12-17T00:00:00Z"
+    // },
     {
       "strike_price": 103,
       "type": "Put",

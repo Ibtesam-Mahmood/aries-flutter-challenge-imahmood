@@ -168,12 +168,17 @@ class RiskRewardGraph extends StatelessWidget {
             enabled: true,
             touchTooltipData: LineTouchTooltipData(
               getTooltipColor: (touchedSpot) => Colors.white,
-              getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
-                return lineBarsSpot.map((lineBarSpot) {
+              getTooltipItems: (List<LineBarSpot> lineBarsSpots) {
+                return lineBarsSpots.map((lineBarSpot) {
                   final price = lineBarSpot.x;
                   final value = lineBarSpot.y;
 
-                  return LineTooltipItem('', const TextStyle(fontSize: 12),
+                  return LineTooltipItem(
+                      '⬤ ',
+                      TextStyle(
+                        color: Constants.lineColors[lineBarSpot.barIndex],
+                        fontSize: 16,
+                      ),
                       children: [
                         TextSpan(
                           text: '\$${price.toStringAsFixed(2)}\n',

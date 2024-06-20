@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenge/util/constants.dart';
 import 'package:flutter_challenge/util/state/contracts_event.dart';
@@ -20,7 +22,8 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
   /// Handles the SetContractsEvent by setting the contracts list to the provided list.
   void _setContract(SetContractEvent event, Emitter<ContractsState> emit) {
     // Only add the first [Constants.contractsMaxCount] contracts
-    final newList = event.contracts.sublist(0, Constants.contractsMaxCount);
+    final newList = event.contracts
+        .sublist(0, min(event.contracts.length, Constants.contractsMaxCount));
 
     emit(state.copyWith(contracts: newList));
   }
