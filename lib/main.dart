@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/components/risk_reward_graph.dart';
+import 'package:flutter_challenge/models/options_contract.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,40 +14,41 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Options Profit Calculator',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurple, brightness: Brightness.dark),
         useMaterial3: true,
       ),
       home: const OptionsCalculator(optionsData: [
         {
-          "strike_price": 100, 
-          "type": "Call", 
-          "bid": 10.05, 
-          "ask": 12.04, 
-          "long_short": "long", 
+          "strike_price": 100,
+          "type": "Call",
+          "bid": 10.05,
+          "ask": 12.04,
+          "long_short": "long",
           "expiration_date": "2025-12-17T00:00:00Z"
         },
         {
-          "strike_price": 102.50, 
-          "type": "Call", 
-          "bid": 12.10, 
-          "ask": 14, 
-          "long_short": "long", 
+          "strike_price": 102.50,
+          "type": "Call",
+          "bid": 12.10,
+          "ask": 14,
+          "long_short": "long",
           "expiration_date": "2025-12-17T00:00:00Z"
         },
         {
-          "strike_price": 103, 
-          "type": "Put", 
-          "bid": 14, 
-          "ask": 15.50, 
-          "long_short": "short", 
+          "strike_price": 103,
+          "type": "Put",
+          "bid": 14,
+          "ask": 15.50,
+          "long_short": "short",
           "expiration_date": "2025-12-17T00:00:00Z"
         },
         {
-          "strike_price": 105, 
-          "type": "Put", 
-          "bid": 16, 
-          "ask": 18, 
-          "long_short": "long", 
+          "strike_price": 105,
+          "type": "Put",
+          "bid": 16,
+          "ask": 18,
+          "long_short": "long",
           "expiration_date": "2025-12-17T00:00:00Z"
         }
       ]),
@@ -63,15 +66,15 @@ class OptionsCalculator extends StatefulWidget {
 }
 
 class _OptionsCalculatorState extends State<OptionsCalculator> {
-  List<Map<String, dynamic>> optionsData = [];
+  late List<OptionsContract> contracts;
 
   @override
   void initState() {
     super.initState();
-    optionsData = widget.optionsData;
+    contracts = [
+      OptionsContractListExtension.fromJsonList(widget.optionsData)[0],
+    ];
   }
-
-  // Your code here
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class _OptionsCalculatorState extends State<OptionsCalculator> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Options Profit Calculator"),
       ),
-      body: const Text("Your code here")
+      body: RiskRewardGraph(data: contracts),
     );
   }
 }
