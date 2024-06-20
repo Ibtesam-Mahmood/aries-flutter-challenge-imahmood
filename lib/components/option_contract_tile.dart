@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenge/models/options_contract.dart';
+import 'package:flutter_challenge/util/state/contracts_bloc.dart';
+import 'package:flutter_challenge/util/state/contracts_event.dart';
+import 'package:flutter_challenge/util/state/contracts_state.dart';
+
+typedef OptionContractTileState = ({OptionsContract contract, bool selected});
 
 class OptionContractTile extends StatelessWidget {
-  final OptionsContract contract;
   final int index;
-  final bool selected;
 
   const OptionContractTile({
     super.key,
-    required this.contract,
     required this.index,
-    required this.selected,
   });
 
   Color getBaseColor(BuildContext context) {
@@ -21,24 +23,42 @@ class OptionContractTile extends StatelessWidget {
     return Theme.of(context).colorScheme.onSurface;
   }
 
-  Color getSurfaceColor(BuildContext context) {
+  Color getSurfaceColor(BuildContext context, bool selected) {
     return selected ? getInverseColor(context) : getBaseColor(context);
   }
 
-  Color getTextColor(BuildContext context) {
+  Color getTextColor(BuildContext context, bool selected) {
     return selected ? getBaseColor(context) : getInverseColor(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final surfaceColor = getSurfaceColor(context);
-    final textColor = getTextColor(context);
+    // Extract the state from the bloc
+    final OptionContractTileState state =
+        context.select<ContractsBloc, OptionContractTileState>(
+      (bloc) => (
+        contract: bloc.state.contracts[index],
+        selected: (bloc.state is SelectedContractsState) &&
+            (bloc.state as SelectedContractsState).selectedIndex == index
+      ),
+    );
+
+    final selected = state.selected;
+    final contract = state.contract;
+
+    // Set the color based on the selected state
+    final surfaceColor = getSurfaceColor(context, selected);
+    final textColor = getTextColor(context, selected);
 
     return Card(
       color: surfaceColor,
       child: InkWell(
         onTap: () {
-          // TODO: Select index
+          final bloc = context.read<ContractsBloc>();
+          return switch (selected) {
+            false => bloc.add(SelectContractEvent(index)),
+            true => bloc.add(const UnselectContractEvent()),
+          };
         },
         borderRadius: BorderRadius.circular(12.0),
         child: Container(

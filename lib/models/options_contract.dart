@@ -1,10 +1,11 @@
 import 'dart:math';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter_challenge/models/enums/option_position.dart';
 import 'package:flutter_challenge/models/enums/option_type.dart';
 
 /// A class that represents an options contract
-class OptionsContract {
+class OptionsContract extends Equatable {
   final double strikePrice;
   final OptionType type;
   final double bid;
@@ -19,7 +20,7 @@ class OptionsContract {
   double get premiumProfit =>
       position == OptionPosition.short ? premium : -premium;
 
-  OptionsContract({
+  const OptionsContract({
     required this.strikePrice,
     required this.type,
     required this.bid,
@@ -41,7 +42,11 @@ class OptionsContract {
     return strikePrice + (position == OptionPosition.long ? -1 : 1) * 5;
   }
 
-  // TODO: Document this method
+  /// Calculates the profit/loss at the expiry price
+  /// If the option is a call its assumed that the exoiry price is larger than the strike price
+  /// If the option is a put its assumed that the expiry price is smaller than the strike price
+  /// If the option is a long then the premium is subtracted from the profit/loss
+  /// If the option is a short then the premium is added to the profit/loss
   double calculateProfitLoss(double priceAtExpiry) {
     // Change in price relative to the strike price
     // Call: expiry price - strike price
@@ -53,14 +58,10 @@ class OptionsContract {
     // The max change in profit/loss is zero
     delta = max(0, delta);
 
-    switch (position) {
-      case OptionPosition.long:
-        return delta - premium;
-
-      // OptionPosition.short
-      default:
-        return premium - delta;
-    }
+    return switch (position) {
+      OptionPosition.long => delta - premium,
+      OptionPosition.short => premium - delta,
+    };
   }
 
   /// Parses an options contract from a map
@@ -78,6 +79,10 @@ class OptionsContract {
       throw Exception('Invalid options contract: $json');
     }
   }
+
+  @override
+  List<Object?> get props =>
+      [strikePrice, type, bid, ask, position, expiration];
 }
 
 extension OptionsContractListExtension on List<OptionsContract> {
