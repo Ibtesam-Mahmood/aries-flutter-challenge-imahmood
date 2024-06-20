@@ -55,6 +55,7 @@ class ContractsState extends Equatable {
 /// A state that holds the selected index of a contract
 /// This is triggered when a contract is selected
 class SelectedContractsState extends ContractsState {
+  /// The index of the selected contract
   final int selectedIndex;
 
   const SelectedContractsState({

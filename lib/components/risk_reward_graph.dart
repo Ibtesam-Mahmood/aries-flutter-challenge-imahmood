@@ -76,7 +76,7 @@ class RiskRewardGraph extends StatelessWidget {
       verticalLines: [
         VerticalLine(
           x: contract.strikePrice,
-          color: Constants.lineColors[selectedIndex].withOpacity(0.5),
+          color: Constants.lineColors[selectedIndex].withOpacity(0.7),
           strokeWidth: 2,
           dashArray: [3, 3],
           label: VerticalLineLabel(
@@ -95,7 +95,7 @@ class RiskRewardGraph extends StatelessWidget {
       horizontalLines: [
         HorizontalLine(
           y: 0,
-          color: Constants.lineColors[selectedIndex].withOpacity(0.5),
+          color: Constants.lineColors[selectedIndex].withOpacity(0.7),
           strokeWidth: 2,
           dashArray: [3, 3],
           label: HorizontalLineLabel(
@@ -179,7 +179,7 @@ class RiskRewardGraph extends StatelessWidget {
                           text: '\$${price.toStringAsFixed(2)}\n',
                           style: const TextStyle(
                             color: Colors.black,
-                            fontSize: 10,
+                            fontSize: 11,
                           ),
                         ),
                         TextSpan(

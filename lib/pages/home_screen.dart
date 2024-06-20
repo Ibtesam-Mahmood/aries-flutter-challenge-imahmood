@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/components/risk_reward_graph.dart';
-import 'package:flutter_challenge/components/stock_options_grid.dart';
+import 'package:flutter_challenge/components/contract_grid/stock_options_grid.dart';
 
 /// Main page of the application displays the graph along with the options contracts
 class HomePage extends StatelessWidget {
