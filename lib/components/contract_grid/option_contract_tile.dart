@@ -64,9 +64,7 @@ class OptionContractTile extends StatelessWidget {
     if (contract == null) {
       if (index == state.count) {
         // Show the add button
-        return AddOptionButton(onPressed: () {
-          // Open add option modal
-        });
+        return const AddOptionButton();
       }
 
       // Show a blank tile

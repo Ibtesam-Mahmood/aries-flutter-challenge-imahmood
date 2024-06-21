@@ -36,7 +36,7 @@ class DeleteOptionModal extends StatelessWidget {
         TextButton(
           child: const Text('Cancel'),
           onPressed: () {
-            bloc.add(RemoveContractEvent(index));
+            Navigator.of(context).pop();
           },
         ),
         TextButton(
