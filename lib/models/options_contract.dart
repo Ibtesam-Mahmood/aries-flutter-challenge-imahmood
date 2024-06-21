@@ -37,11 +37,6 @@ class OptionsContract extends Equatable {
     };
   }
 
-  /// Calculates the x value to show for the max profit/loss point
-  double getMaxPoint() {
-    return strikePrice + (position == OptionPosition.long ? -1 : 1) * 5;
-  }
-
   /// Calculates the profit/loss at the expiry price
   /// If the option is a call its assumed that the exoiry price is larger than the strike price
   /// If the option is a put its assumed that the expiry price is smaller than the strike price
