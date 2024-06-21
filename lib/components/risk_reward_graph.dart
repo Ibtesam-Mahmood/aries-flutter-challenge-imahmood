@@ -7,6 +7,11 @@ import 'package:flutter_challenge/util/constants.dart';
 import 'package:flutter_challenge/util/state/contracts_bloc.dart';
 import 'package:flutter_challenge/util/state/contracts_state.dart';
 
+/// The risk reward graph displays a LineChart with the profit/loss of each contract
+/// The X Axis is the price of the underlying asset at expiration
+/// While the Y Axis is the profit/loss of the contract
+/// It is adapted so that it can display up to 15 contracts at once
+/// Additionally contracts can be selected to display the break even point and max profit/loss
 class RiskRewardGraph extends StatelessWidget {
   const RiskRewardGraph({super.key});
 

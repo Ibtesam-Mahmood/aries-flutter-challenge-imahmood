@@ -12,6 +12,7 @@ class DeleteOptionModal extends StatelessWidget {
 
   const DeleteOptionModal({super.key, required this.bloc, required this.index});
 
+  /// Show the delete option modal
   static Future<void> show(BuildContext context, int index) async {
     final bloc = context.read<ContractsBloc>();
 

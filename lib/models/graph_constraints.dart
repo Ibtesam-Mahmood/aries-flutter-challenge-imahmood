@@ -16,6 +16,7 @@ class GraphConstraints {
         minY = normalize(minY),
         maxY = normalize(maxY);
 
+  /// Rounds the value to the nearest 10th
   static double normalize(double value) {
     return (value / 10).round() * 10.0;
   }

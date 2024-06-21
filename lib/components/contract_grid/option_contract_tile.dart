@@ -33,10 +33,12 @@ class OptionContractTile extends StatelessWidget {
     return Theme.of(context).colorScheme.onSurface;
   }
 
+  /// Get the surface color based on the selected state
   Color getSurfaceColor(BuildContext context, bool selected) {
     return selected ? Constants.lineColors[index] : getBaseColor(context);
   }
 
+  /// Get the text color based on the selected state
   Color getTextColor(BuildContext context, bool selected) {
     return selected ? getBaseColor(context) : getInverseColor(context);
   }

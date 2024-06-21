@@ -12,6 +12,7 @@ class AddOptionModal extends StatefulWidget {
 
   const AddOptionModal({super.key, required this.bloc});
 
+  /// Show the add option modal
   static Future<void> show(BuildContext context) async {
     final bloc = context.read<ContractsBloc>();
 
